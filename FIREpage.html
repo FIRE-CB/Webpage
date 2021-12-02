@@ -16,12 +16,22 @@
 
 
  <style>
-   /* DataTables Button CSS changed */
-   .dt-button {
+   button.dt-button {
+     color: white;
+     font-size: 20px;
+     font-style: Verdana;
+     padding: 0.25em 0.5em;
+   }
+   .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate{
+     font-size: 20px;
      color: white;
    }
 
-
+   .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    padding: 0.25em 0.5em;
+    font: white;
+    font: 15px;
+  }
   head, body{
     font: 30px Verdana;
     text-align: center;
@@ -68,7 +78,7 @@
   
 <br>
 
-  <h4>Enter JSON file: <label id="msg"></label></h4>
+  <h6>Enter JSON file: <label id="msg"></label></h6>
   <button id="Get">Get TextBox Value</button> 
   <input type="text" id="jsonFile" name="jsonFile">
   <script type="text/javascript">
@@ -79,6 +89,16 @@
 
     <script>
     var jsonFile;
+    window.onload = function() {
+      try {
+        var url_string = (window.location.href).toLowerCase();
+        var url = new URL(url_string);
+        var name = url.searchParams.get("name");
+        console.log(name);
+      } catch (err) {
+        console.log("Error: " + err);
+      }
+}
     $("#Get").click(function () {
       jsonFile = $('#jsonFile').val();
       $('#msg').html($('#jsonFile').val());
